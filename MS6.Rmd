@@ -52,7 +52,13 @@ figure1 <- ggplot(cces_2018, aes(x = cces_2018$CC18_415a)) + geom_bar(mapping = 
 
 ``` {r shiny, include = F}
 
-ui <- fluidPage()
-server <- function(input, output) {renderPlot(figure1)}
+ui <- fluidPage(
+  plotOutput(outputId = "figure1")
+)
+server <- function(input, output) {
+  output$figure1 <- renderPlot({figure1
+    
+  })
+}
 shinyApp(ui = ui, server = server)
 ```
